@@ -11,12 +11,22 @@ const sidebarConfig: NavLink[] = [
   {
     title: "dashboard",
     path: "/",
-    icon: getIcon("ic:baseline-home"),
+    icon: getIcon("ion:grid"),
   },
   {
-    title: "invoices",
-    path: "/dashboard/invoices",
-    icon: getIcon("ic:baseline-attach-money"),
+    title: "invoice",
+    path: "/dashboard/invoice/list",
+    icon: getIcon("ion:document-text"),
+  },
+  {
+    title: "user",
+    path: "/dashboard/user/list",
+    icon: getIcon("ion:person"),
+  },
+  {
+    title: "new user",
+    path: "/dashboard/user/new",
+    icon: getIcon("ion:person"),
   },
 ];
 

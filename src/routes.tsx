@@ -6,6 +6,8 @@ import LogoOnlyLayout from "./layouts/LogoOnlyLayout";
 import DashboardApp from "./pages/DashboardApp";
 import InvoiceList from "./pages/InvoiceList";
 import Login from "./pages/Login";
+import UserList from "./pages/user/UserList";
+import UserNew from "./pages/user/UserNew";
 
 export default function Router() {
   return useRoutes([
@@ -18,7 +20,17 @@ export default function Router() {
       ),
       children: [
         { path: "app", element: <DashboardApp /> },
-        { path: "invoices", element: <InvoiceList /> },
+        {
+          path: "invoice",
+          children: [{ path: "list", element: <InvoiceList /> }],
+        },
+        {
+          path: "user",
+          children: [
+            { path: "list", element: <UserList /> },
+            { path: "new", element: <UserNew /> },
+          ],
+        },
       ],
     },
     {

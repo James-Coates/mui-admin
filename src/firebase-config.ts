@@ -3,8 +3,9 @@ import { initializeApp } from "firebase/app";
 import {
   getAuth,
   signInWithEmailAndPassword as firebaseSignInWithEmailAndPassword,
-  GoogleAuthProvider,
+  createUserWithEmailAndPassword as firebaseCreateUserWithEmailAndPassword,
 } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 import { curry } from "lodash";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -29,5 +30,11 @@ export const auth = getAuth(app);
 export const signInWithEmailAndPassword = curry(
   firebaseSignInWithEmailAndPassword
 )(auth);
-export const provider = new GoogleAuthProvider();
+
+export const createUserWithEmailAndPassword = curry(
+  firebaseCreateUserWithEmailAndPassword
+)(auth);
+
+export const firestore = getFirestore(app);
+
 export const analytics = getAnalytics(app);

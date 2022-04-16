@@ -1,6 +1,7 @@
 import { User, UserCredential } from "firebase/auth";
 import React, {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -28,22 +29,23 @@ export default function AuthProvider({ children }: AuthProviderProps) {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
-  function login(email: string, password: string) {
-    return signInWithEmailAndPassword(email, password);
-  }
+  const login = useCallback(
+    (email: string, password: string) =>
+      signInWithEmailAndPassword(email, password),
+    []
+  );
 
-  function logout() {
-    return auth.signOut();
-  }
+  const logout = useMemo(() => auth.signOut, []);
 
   const value = useMemo(
     () => ({ user: currentUser, login, logout }),
-    [currentUser]
+    [currentUser, login, logout]
   );
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
+      console.log(user);
       setLoading(false);
     });
 
