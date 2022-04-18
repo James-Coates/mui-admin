@@ -4,3 +4,7 @@ export type User = {
   firstName: string;
   lastName: string;
 };
+
+export interface NewUser extends Omit<User, "id"> {
+  password: string;
+}

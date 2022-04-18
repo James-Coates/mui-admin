@@ -15,9 +15,9 @@ interface IFormInputs {
 export default function UserNewForm() {
   const { handleSubmit, control } = useForm<IFormInputs>();
 
-  function onSubmit({ password, ...user }: IFormInputs) {
+  function onSubmit(user: IFormInputs) {
     try {
-      createUser(user, password);
+      createUser(user);
       // console.log(user);
     } catch (err) {
       console.log(err);

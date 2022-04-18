@@ -7,6 +7,11 @@ import {
 } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
+import {
+  getFunctions,
+  httpsCallable as firebaseHttpsCallable,
+} from "firebase/functions";
+
 import { curry } from "lodash";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -36,5 +41,8 @@ export const createUserWithEmailAndPassword = curry(
 )(auth);
 
 export const firestore = getFirestore(app);
+
+export const functions = getFunctions(app);
+export const httpsCallable = curry(firebaseHttpsCallable)(functions);
 
 export const analytics = getAnalytics(app);
