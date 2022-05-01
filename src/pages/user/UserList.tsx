@@ -1,26 +1,43 @@
+// react
 import { useEffect, useState } from "react";
-import { Container, Typography } from "@mui/material";
+// mui
+import { Button, Container, Stack, Typography } from "@mui/material";
+// components
+import Iconify from "../../components/atoms/Iconify";
+import UsersTable from "../../components/organisms/UsersTable";
 import Page from "../../components/organisms/Page";
+// api
 import { getUsers } from "../../api/user";
+// types
+import { User } from "../../types/user";
 
 export default function UserList() {
-  const [users, setUsers] = useState<any[]>([]);
+  const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
-    getUsers().then((users) => setUsers(users));
+    getUsers().then((users) => {
+      setUsers(users);
+    });
   }, []);
 
   return (
     <Page title="Users">
       <Container>
-        <Typography variant="h4">Users</Typography>
-
-        {users.map((user) => (
-          <div key={user.id}>
-            <Typography variant="h5">{user.id}</Typography>
-            <Typography variant="h5">{user.email}</Typography>
-          </div>
-        ))}
+        <Stack
+          direction="row"
+          alignItems="center"
+          justifyContent="space-between"
+          mb={5}
+        >
+          <Typography variant="h4">Users</Typography>
+          <Button
+            variant="contained"
+            startIcon={<Iconify icon="eva:plus-fill" />}
+          >
+            New User
+          </Button>
+        </Stack>
+        <UsersTable users={users} />
       </Container>
     </Page>
   );

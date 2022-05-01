@@ -1,5 +1,5 @@
-import { NavLink } from "../types/nav-link";
 import Iconify from "../components/atoms/Iconify";
+import { NavItemConfig } from "../types/nav-item";
 
 // ----------------------------------------------------------------------
 
@@ -7,27 +7,35 @@ const getIcon = (name: string) => (
   <Iconify icon={name} width={22} height={22} />
 );
 
-const sidebarConfig: NavLink[] = [
+export const sidebarConfig: NavItemConfig[] = [
   {
     title: "dashboard",
-    path: "/",
-    icon: getIcon("ion:grid"),
+    path: "/dashboard/app",
+    icon: getIcon("uil:estate"),
   },
   {
     title: "invoice",
     path: "/dashboard/invoice/list",
-    icon: getIcon("ion:document-text"),
-  },
-  {
-    title: "user",
-    path: "/dashboard/user/list",
-    icon: getIcon("ion:person"),
-  },
-  {
-    title: "new user",
-    path: "/dashboard/user/new",
-    icon: getIcon("ion:person"),
+    icon: getIcon("uil:invoice"),
   },
 ];
 
-export default sidebarConfig;
+export const sidebarManagementConfig: NavItemConfig[] = [
+  {
+    title: "User",
+    icon: getIcon("uil:users-alt"),
+    path: "/dashboard/user",
+    children: [
+      {
+        title: "list",
+        path: "/dashboard/user/list",
+        icon: getIcon("ion:person"),
+      },
+      {
+        title: "new",
+        path: "/dashboard/user/new",
+        icon: getIcon("ion:person"),
+      },
+    ],
+  },
+];

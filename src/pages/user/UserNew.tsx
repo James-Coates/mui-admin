@@ -1,14 +1,15 @@
+// mui
 import { Container, Typography } from "@mui/material";
-import React from "react";
+// components
 import Page from "../../components/organisms/Page";
-import UserNewForm from "../../components/organisms/UserNewForm";
+import UserForm from "../../components/organisms/UserForm";
 
 export default function UserNew() {
   return (
     <Page title="New User">
       <Container>
         <Typography variant="h4">Create a new user</Typography>
-        <UserNewForm />
+        <UserForm />
       </Container>
     </Page>
   );

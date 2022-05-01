@@ -6,6 +6,7 @@ import LogoOnlyLayout from "./layouts/LogoOnlyLayout";
 import DashboardApp from "./pages/DashboardApp";
 import InvoiceList from "./pages/InvoiceList";
 import Login from "./pages/Login";
+import UserEdit from "./pages/user/UserEdit";
 import UserList from "./pages/user/UserList";
 import UserNew from "./pages/user/UserNew";
 
@@ -29,6 +30,7 @@ export default function Router() {
           children: [
             { path: "list", element: <UserList /> },
             { path: "new", element: <UserNew /> },
+            { path: ":userId/edit", element: <UserEdit /> },
           ],
         },
       ],

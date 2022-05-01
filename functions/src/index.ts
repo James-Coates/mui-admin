@@ -17,7 +17,7 @@ export const addUser = functions.https.onCall(async (data, context) => {
     const writeResult = await admin
       .firestore()
       .collection("users")
-      .add(validatedUser)
+      .add({ ...validatedUser })
       .then(async (userRef) => {
         return admin.auth().createUser({
           uid: userRef.id,

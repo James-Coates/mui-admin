@@ -1,28 +1,45 @@
-import React from "react";
-import { Button, Grid } from "@mui/material";
-import FormTextField from "../atoms/FormTextField";
+// react
+import { useEffect } from "react";
+// lib
 import { useForm } from "react-hook-form";
+// mui
+import { Button, Grid } from "@mui/material";
+// components
+import FormTextField from "../atoms/FormTextField";
+// api
 import { createUser } from "../../api/user";
-import { User } from "firebase/auth";
+// types
+import { User } from "../../types/user";
 
-interface IFormInputs {
+type UserFormProps = {
+  user?: User | null;
+};
+
+type IFormInputs = {
   email: string;
   password: string;
   firstName: string;
   lastName: string;
-}
+};
 
-export default function UserNewForm() {
-  const { handleSubmit, control } = useForm<IFormInputs>();
+export default function UserForm({ user }: UserFormProps) {
+  const { handleSubmit, control, setValue } = useForm<IFormInputs>();
 
   function onSubmit(user: IFormInputs) {
     try {
       createUser(user);
-      // console.log(user);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   }
+
+  useEffect(() => {
+    if (user) {
+      setValue("email", user.email);
+      setValue("firstName", user.firstName);
+      setValue("lastName", user.lastName);
+    }
+  }, [user, setValue]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
